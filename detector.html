@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Keyboard API</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f4f4f4;
+padding: 20px;
+text-align: center;
+}
+#keyDisplay {
+font-size: 24px;
+margin: 20px 0;
+padding: 10px;
+border: 2px solid #007bff;
+background-color: #fff;
+}
+.key {
+display: inline-block;
+margin: 5px;
+padding: 20px;
+border: 2px solid #007bff;
+border-radius: 5px;
+background-color: #e7f3ff;
+transition: background-color 0.3s;
+}
+.key.pressed {
+background-color: #007bff;
+color: white;
+}
+</style>
+</head>
+<body>
+<h1>Build Keyboard App</h1>
+<p>Press any key on your keyboard!</p>
+<div id="keyDisplay">Key: <span id="keyName">None</span></div>
+<div id="keyContainer"></div>
+<script>
+// Function to handle keydown events
+const handleKeyDown = (event) => {
+const keyName = event.key; // Get the name of the pressed key
+const keyContainer = document.getElementById('keyContainer'); // Get the key
+const keyElement = document.createElement('div');
+// Set attributes for the new key element
+keyElement.classList.add('key', 'pressed'); // Add classes for styling
+keyElement.innerText = keyName; // Display the key name
+keyContainer.appendChild(keyElement); // Add the key element to the container
+// Update the key display
+document.getElementById('keyName').innerText = keyName; // Show pressed key
+// Remove the 'pressed' class after 300ms for visual effect
+setTimeout(() => {
+keyElement.classList.remove('pressed');
+}, 300);
+};
+
+// Function to handle keyup events
+const handleKeyUp = (event) => {
+    // You can handle keyup events if needed
+};
+
+// Attach event listeners for keydown and keyup
+window.addEventListener('keydown', handleKeyDown);
+window.addEventListener('keyup', handleKeyup);
+</script>
+</body>
+</html>
